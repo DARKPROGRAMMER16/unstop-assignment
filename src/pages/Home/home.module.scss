@@ -19,7 +19,8 @@
 }
 
 .brandName {
-  color: #6C5CE7 !important;
+  color: #6358DC !important;
+  font-weight: 900;
 }
 
 .profileCard {
@@ -29,7 +30,8 @@
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 320px;
+  max-width: 276px;
+  height: 311px;
 }
 
 .profileImage {
@@ -47,7 +49,7 @@
 }
 
 .userName {
-  color: #6C5CE7;
+  color: #6358DC;
   margin: 10px 0;
   font-size: 1.5rem;
 }
@@ -58,7 +60,7 @@
 }
 
 .logoutButton {
-  background-color: #6C5CE7;
+  background-color: #6358DC;
   color: white;
   border: none;
   border-radius: 25px;

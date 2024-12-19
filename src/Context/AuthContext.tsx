@@ -5,7 +5,8 @@ interface AuthContextType {
   token: string | null;
   email: string | null;
   firstName: string | null;
-  login: (username: string, token: string, email: string, firstName: string) => void;
+  gender: string | null;
+  login: (username: string, token: string, email: string, firstName: string, gender: string) => void;
   logout: () => void;
 }
 
@@ -14,6 +15,7 @@ export const AuthContext = createContext<AuthContextType>({
   token: null,
   email: null,
   firstName: null,
+  gender: null,
   login: () => {},
   logout: () => {},
 });
@@ -32,19 +34,24 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   const [firstName, setFirstName] = useState<string | null>(
     localStorage.getItem('firstName')
   );
+  const [gender, setGender] = useState<string | null>(
+    localStorage.getItem('gender')
+  );
 
 
-  const login = (username: string, token: string, email: string, firstName: string) => {
+  const login = (username: string, token: string, email: string, firstName: string, gender: string) => {
     // Update state
     setUsername(username);
     setToken(token);
     setEmail(email);
     setFirstName(firstName);
+    setGender(gender);
     // Save to localStorage
     localStorage.setItem('username', username);
     localStorage.setItem('token', token);
     localStorage.setItem('email', email || '');
     localStorage.setItem('firstName', firstName || '');
+    localStorage.setItem('gender', gender || '');
   };
 
   const logout = () => {
@@ -53,11 +60,13 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
     setToken(null);
     setEmail(null);
     setFirstName(null);
+    setGender(null);
     // Remove from localStorage
     localStorage.removeItem('username');
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     localStorage.removeItem('firstName');
+    localStorage.removeItem('gender');
   };
 
   return (
@@ -67,6 +76,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         token,
         email,
         firstName,
+        gender,
         login,
         logout,
       }}

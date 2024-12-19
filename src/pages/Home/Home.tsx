@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './home.module.scss'
 import ProfileImage from "../../assets/icons/profile.svg";
 import { useContext } from "react";
@@ -7,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
-  const {  logout, email, firstName } = useContext(AuthContext);
+  const {  logout, email, firstName, gender } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -29,6 +28,7 @@ const Home = () => {
         </div>
         <h2 className={styles.userName}>{firstName}</h2>
         <p className={styles.userEmail}>{email}</p>
+        <p className={styles.userEmail}>{gender}</p>
         <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
       </div>
     </div>

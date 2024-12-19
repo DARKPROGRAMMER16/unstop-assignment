@@ -35,7 +35,7 @@ const Login = () => {
     try {
       const apidata = await authController.login(data);
 
-      login(apidata.username, apidata.accessToken, apidata.email, apidata.firstName);
+      login(apidata.username, apidata.accessToken, apidata.email, apidata.firstName, apidata.gender);
       reset();
 
       navigate("/");
@@ -80,7 +80,7 @@ const Login = () => {
           <InputGroup
             label="Email"
             type="email"
-            placeholder="username@gmail.com"
+            placeholder="username@email.com"
             error={errors.email?.message}
             icon={EmailIcon}
             {...register("email")}
@@ -89,7 +89,7 @@ const Login = () => {
           <InputGroup
             label="Password"
             type="password"
-            placeholder="••••••••••"
+            placeholder="Password"
             error={errors.password?.message}
             icon={LockIcon}
             {...register("password")}

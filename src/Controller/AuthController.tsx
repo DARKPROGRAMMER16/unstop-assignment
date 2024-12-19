@@ -13,6 +13,7 @@ interface LoginResponse {
   accessToken: string;
   email: string;
   firstName: string;
+  gender: string;
 }
 
 export const authController = {
@@ -25,6 +26,7 @@ export const authController = {
       accessToken: data.accessToken,
       email: data.email,
       firstName: data.firstName,
+      gender: data.gender,
     };
   }
 };
