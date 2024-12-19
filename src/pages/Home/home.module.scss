@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,7 +8,7 @@
   min-height: 96vh;
   padding: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-breakpoint) {
     padding: 16px;
   }
 }
@@ -15,23 +17,23 @@
   text-align: center;
   margin-bottom: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-breakpoint) {
     margin-bottom: 24px;
   }
 
   h1 {
     margin: 0;
     font-size: 2.5rem;
-    color: #333;
+    color: $text-dark;
 
-    @media (max-width: 768px) {
+    @media (max-width: $mobile-breakpoint) {
       font-size: 2rem;
     }
   }
 }
 
 .brandName {
-  color: #6358DC !important;
+  color: $primary-color !important;
   font-weight: 900;
 }
 
@@ -46,7 +48,7 @@
   height: auto;
   min-height: 311px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-breakpoint) {
     max-width: 100%;
     padding: 24px;
   }
@@ -59,7 +61,7 @@
   border-radius: 50%;
   overflow: hidden;
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-breakpoint) {
     width: 100px;
     height: 100px;
     margin-bottom: 16px;
@@ -73,18 +75,18 @@
 }
 
 .userName {
-  color: #6358DC;
+  color: $primary-color;
   margin: 10px 0;
   font-size: 1.5rem;
 }
 
 .userEmail, .userGender {
-  color: #666;
+  color: $text-light;
   margin: 5px 0;
 }
 
 .logoutButton {
-  background-color: #6358DC;
+  background-color: $primary-color;
   color: white;
   border: none;
   border-radius: 25px;
@@ -96,5 +98,5 @@
 }
 
 .logoutButton:hover {
-  background-color: #5849e6;
+  background-color: $primary-color-hover;
 }

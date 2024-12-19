@@ -113,7 +113,7 @@ const Login = () => {
         </form>
 
         <p className={styles.signupPrompt}>
-          {Constants.SIGNUP_PROMPT}
+          {Constants.SIGNUP_PROMPT}{" "}
           <a href="#" className={styles.signupLink}>
             {Constants.SIGNUP_LINK}
           </a>
