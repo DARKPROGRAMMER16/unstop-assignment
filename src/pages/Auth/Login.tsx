@@ -14,6 +14,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { authController } from "../../Controller/AuthController";
+import { Constants } from "../Constants";
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -53,24 +54,24 @@ const Login = () => {
         loading="lazy"
       />
       <div className={styles.loginCard}>
-        <h1 className={styles.title}>Welcome to</h1>
-        <h2 className={styles.brandName}>Unstop</h2>
+        <h1 className={styles.title}>{Constants.WELCOME_TO}</h1>
+        <h2 className={styles.brandName}>{Constants.BRAND_NAME}</h2>
 
         <button className={styles.socialButton}>
           <img src={GoogleIcon} alt="Google" />
-          Login with Google
+          {Constants.LOGIN_WITH_GOOGLE}
         </button>
 
         <button className={styles.socialButton}>
           <img src={FacebookIcon} alt="Facebook" />
-          Login with Facebook
+          {Constants.LOGIN_WITH_FACEBOOK}
         </button>
 
         <div className={styles.divider}>OR</div>
 
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <InputGroup
-            label="User name"
+            label={Constants.USER_NAME}
             type="text"
             placeholder="username"
             error={errors.username?.message}
@@ -79,7 +80,7 @@ const Login = () => {
           />
 
           <InputGroup
-            label="Email"
+            label={Constants.EMAIL}
             type="email"
             placeholder="username@email.com"
             error={errors.email?.message}
@@ -88,7 +89,7 @@ const Login = () => {
           />
 
           <InputGroup
-            label="Password"
+            label={Constants.PASSWORD}
             type="password"
             placeholder="Password"
             error={errors.password?.message}
@@ -99,22 +100,22 @@ const Login = () => {
           <div className={styles.rememberForgotRow}>
             <label className={styles.checkboxLabel}>
               <input type="checkbox" {...register("rememberMe")} />
-              Remember me
+              {Constants.REMEMBER_ME}
             </label>
             <a href="#" className={styles.forgotPassword}>
-              Forgot Password?
+              {Constants.FORGOT_PASSWORD}
             </a>
           </div>
 
           <button type="submit" className={styles.loginButton}>
-            Login
+            {Constants.LOGIN}
           </button>
         </form>
 
         <p className={styles.signupPrompt}>
-          Don't have an account?{" "}
+          {Constants.SIGNUP_PROMPT}
           <a href="#" className={styles.signupLink}>
-            Register
+            {Constants.SIGNUP_LINK}
           </a>
         </p>
       </div>

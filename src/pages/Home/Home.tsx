@@ -3,6 +3,7 @@ import ProfileImage from "../../assets/icons/profile.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from 'react-router-dom';
+import { Constants } from '../Constants';
 
 const Home = () => {
 
@@ -18,8 +19,8 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.welcomeSection}>
-        <h1>Welcome to</h1>
-        <h1 className={styles.brandName}>Unstop</h1>
+        <h1>{Constants.WELCOME_TO}</h1>
+        <h1 className={styles.brandName}>{Constants.BRAND_NAME}</h1>
       </div>
 
       <div className={styles.profileCard}>
@@ -38,7 +39,7 @@ const Home = () => {
           onClick={handleLogout}
           aria-label="Logout"
         >
-          Logout
+          {Constants.LOGOUT}
         </button>
       </div>
     </div>

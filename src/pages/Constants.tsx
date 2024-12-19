@@ -1,0 +1,17 @@
+export enum Constants {
+    WELCOME_TO = "Welcome to",
+    BRAND_NAME = "Unstop",
+    LOGIN_WITH_GOOGLE = "Login with Google",
+    LOGIN_WITH_FACEBOOK = "Login with Facebook",
+    OR = "OR",
+    USER_NAME = "User name",
+    EMAIL = "Email",
+    PASSWORD = "Password",
+    REMEMBER_ME = "Remember me",
+    FORGOT_PASSWORD = "Forgot Password?",
+    LOGIN = "Login",
+    SIGNUP = "Signup",
+    SIGNUP_PROMPT = "Don't have an account?",
+    SIGNUP_LINK = "Register",
+    LOGOUT = "Logout",
+}
