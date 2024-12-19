@@ -50,6 +50,7 @@ const Login = () => {
         src={LoginIllustration}
         alt="Login Illustration"
         className={styles.illustration}
+        loading="lazy"
       />
       <div className={styles.loginCard}>
         <h1 className={styles.title}>Welcome to</h1>

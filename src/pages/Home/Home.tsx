@@ -24,12 +24,22 @@ const Home = () => {
 
       <div className={styles.profileCard}>
         <div className={styles.profileImage}>
-          <img src={ProfileImage} alt="Profile" />
+          <img 
+            src={ProfileImage} 
+            alt="Profile" 
+            loading="lazy"
+          />
         </div>
         <h2 className={styles.userName}>{firstName}</h2>
         <p className={styles.userEmail}>{email}</p>
         <p className={styles.userEmail}>{gender}</p>
-        <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
+        <button 
+          className={styles.logoutButton} 
+          onClick={handleLogout}
+          aria-label="Logout"
+        >
+          Logout
+        </button>
       </div>
     </div>
   )
