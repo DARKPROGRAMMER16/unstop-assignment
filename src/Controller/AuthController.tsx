@@ -19,8 +19,6 @@ interface LoginResponse {
 export const authController = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
     const { data } = await axios.post(`${BASE_URL}/auth/login`, credentials);
-
-    console.log({ data });
     return {
       username: data.username,
       accessToken: data.accessToken,

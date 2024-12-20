@@ -33,6 +33,7 @@ const Home = () => {
             loading="lazy"
           />
         </div>
+        {/* data here is directly fetched from the context, where user data is backed throught local storage */}
         <h2 className={styles.userName}>{firstName}</h2>
         <p className={styles.userEmail}>{email}</p>
         <p className={styles.userEmail}>{gender}</p>

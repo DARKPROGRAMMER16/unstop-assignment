@@ -22,6 +22,7 @@ type FormData = yup.InferType<typeof schema>;
 const Login = () => {
   const navigate = useNavigate();
 
+  //react hook form to handle the form data and YUP validation
   const {
     register,
     handleSubmit,
@@ -33,10 +34,13 @@ const Login = () => {
 
   const { login } = useContext(AuthContext);
 
+  //onSubmit function to handle the form data
   const onSubmit = async (data: FormData) => {
     try {
+      //api call to login
       const apidata = await authController.login(data);
 
+      //storing data in local storage and context
       login(apidata.username, apidata.accessToken, apidata.email, apidata.firstName, apidata.gender);
       reset();
 
