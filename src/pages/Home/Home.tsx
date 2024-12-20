@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 import { Constants } from '../Constants';
+import { toast } from 'react-toastify';
 
 const Home = () => {
 
@@ -13,6 +14,7 @@ const Home = () => {
 
   const handleLogout = () => {
     logout();
+    toast.error("User Logged Out");
     navigate("/login");
   }
 

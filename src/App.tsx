@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute/PublicRoute";
+import { ToastContainer } from "react-toastify";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Login = lazy(() => import("./pages/Auth/Login"));
@@ -32,6 +33,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </BrowserRouter>
+      <ToastContainer/>
     </div>
   );
 };

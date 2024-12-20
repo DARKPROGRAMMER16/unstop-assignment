@@ -15,6 +15,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { authController } from "../../Controller/AuthController";
 import { Constants } from "../Constants";
+import { toast } from "react-toastify";
 
 type FormData = yup.InferType<typeof schema>;
 
@@ -38,6 +39,8 @@ const Login = () => {
 
       login(apidata.username, apidata.accessToken, apidata.email, apidata.firstName, apidata.gender);
       reset();
+
+      toast.success("User Login successful");
 
       navigate("/");
     } catch (error) {
