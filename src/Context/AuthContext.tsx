@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 
-
 interface AuthContextType {
   userData: {
     username: string | null;
@@ -37,7 +36,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   // Initialize state from localStorage
-
   const storedUserData = JSON.parse(localStorage.getItem("userData") || "{}");
   const [userData, setUserData] = useState({
     username: storedUserData.username || null,
@@ -67,6 +65,8 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("userData");
     localStorage.removeItem("token");
   };
+
+ 
 
   return (
     <AuthContext.Provider value={{ userData, token, login, logout }}>

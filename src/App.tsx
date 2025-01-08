@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useCallback, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
@@ -9,7 +9,54 @@ import { ToastContainer } from "react-toastify";
 const Home = lazy(() => import("./pages/Home/Home"));
 const Login = lazy(() => import("./pages/Auth/Login"));
 
+const useClearLocalStorageOnInactivity = (timeout: number) => {
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    // Start a new timer
+    timerRef.current = setTimeout(() => {
+      localStorage.clear();
+      window.location.reload();
+    }, timeout);
+  }, [timeout]);
+
+  useEffect(() => {
+    // Reset the timer on user activity
+    const handleUserActivity = () => {
+      resetTimer();
+    };
+
+    // Add event listeners for user activity
+    window.addEventListener('mousemove', handleUserActivity);
+    window.addEventListener('keydown', handleUserActivity);
+    window.addEventListener('click', handleUserActivity);
+
+    // Start the initial timer
+    resetTimer();
+
+    return () => {
+      // Cleanup event listeners and timer on unmount
+      window.removeEventListener('mousemove', handleUserActivity);
+      window.removeEventListener('keydown', handleUserActivity);
+      window.removeEventListener('click', handleUserActivity);
+
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [timeout, resetTimer]);
+
+  return null;
+};
+
 const App = () => {
+
+  useClearLocalStorageOnInactivity(15000); 
+
   return (
     <div>
       <BrowserRouter>
