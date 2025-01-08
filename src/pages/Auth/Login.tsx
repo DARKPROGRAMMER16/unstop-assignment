@@ -41,7 +41,15 @@ const Login = () => {
       const apidata = await authController.login(data);
 
       //storing data in local storage and context
-      login(apidata.username, apidata.accessToken, apidata.email, apidata.firstName, apidata.gender);
+      login(
+        {
+          username: apidata.username,
+          firstName: apidata.firstName,
+          email: apidata.email,
+          gender: apidata.gender,
+        },
+        apidata.accessToken
+      );
       reset();
 
       toast.success("User Login successful");

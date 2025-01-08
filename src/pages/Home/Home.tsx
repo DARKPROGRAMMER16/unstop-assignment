@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 const Home = () => {
 
-  const {  logout, email, firstName, gender } = useContext(AuthContext);
+  const {  logout, userData} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -17,6 +17,8 @@ const Home = () => {
     toast.error("User Logged Out");
     navigate("/login");
   }
+
+  const { firstName, email, gender} = userData;
 
   return (
     <div className={styles.container}>
