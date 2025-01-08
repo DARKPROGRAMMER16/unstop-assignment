@@ -31,18 +31,18 @@ const useClearLocalStorageOnInactivity = (timeout: number) => {
     };
 
     // Add event listeners for user activity
-    window.addEventListener('mousemove', handleUserActivity);
-    window.addEventListener('keydown', handleUserActivity);
-    window.addEventListener('click', handleUserActivity);
+    window.addEventListener("mousemove", handleUserActivity);
+    window.addEventListener("keydown", handleUserActivity);
+    window.addEventListener("click", handleUserActivity);
 
     // Start the initial timer
     resetTimer();
 
     return () => {
       // Cleanup event listeners and timer on unmount
-      window.removeEventListener('mousemove', handleUserActivity);
-      window.removeEventListener('keydown', handleUserActivity);
-      window.removeEventListener('click', handleUserActivity);
+      window.removeEventListener("mousemove", handleUserActivity);
+      window.removeEventListener("keydown", handleUserActivity);
+      window.removeEventListener("click", handleUserActivity);
 
       if (timerRef.current) {
         clearTimeout(timerRef.current);
@@ -53,9 +53,38 @@ const useClearLocalStorageOnInactivity = (timeout: number) => {
   return null;
 };
 
-const App = () => {
+const useClearLocalStorageOnTabClose = () => {
+  useEffect(() => {
+    sessionStorage.setItem("isTabClosed", "false");
 
-  useClearLocalStorageOnInactivity(15000); 
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem("isTabClosed", "true");
+    };
+
+    const handleUnload = () => {
+      const isTabClosed = sessionStorage.getItem("isTabClosed");
+      if (
+        isTabClosed === "true" &&
+        localStorage.getItem("rememberMe") === "false"
+      ) {
+        localStorage.clear();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("unload", handleUnload);
+    };
+  }, []);
+};
+
+const App = () => {
+  useClearLocalStorageOnInactivity(15000);
+
+  useClearLocalStorageOnTabClose();
 
   return (
     <div>
@@ -83,7 +112,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </BrowserRouter>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

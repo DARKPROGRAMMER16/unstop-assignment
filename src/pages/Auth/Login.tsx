@@ -50,6 +50,9 @@ const Login = () => {
         },
         apidata.accessToken
       );
+
+      localStorage.setItem("rememberMe", JSON.stringify(data?.rememberMe));
+
       reset();
 
       toast.success("User Login successful");
