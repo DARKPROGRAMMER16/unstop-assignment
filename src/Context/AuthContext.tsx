@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import CryptoJS from "crypto-js";
 
-const secretKey = "your-secret-key"; 
+const secretKey = "your-secret-key";
 
 interface AuthContextType {
   userData: {
@@ -38,10 +38,13 @@ export const AuthContext = createContext<AuthContextType>({
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  
   const storedUserDataEncrypted = localStorage.getItem("userData");
   const storedUserData = storedUserDataEncrypted
-    ? JSON.parse(CryptoJS.AES.decrypt(storedUserDataEncrypted, secretKey).toString(CryptoJS.enc.Utf8))
+    ? JSON.parse(
+        CryptoJS.AES.decrypt(storedUserDataEncrypted, secretKey).toString(
+          CryptoJS.enc.Utf8
+        )
+      )
     : {};
 
   const [userData, setUserData] = useState({
@@ -51,12 +54,17 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     gender: storedUserData.gender || null,
   });
 
-  const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token")
+  );
 
   const login = (newUserData: typeof userData, newToken: string) => {
     setUserData(newUserData);
     setToken(newToken);
-    const encryptedUserData = CryptoJS.AES.encrypt(JSON.stringify(newUserData), secretKey).toString();
+    const encryptedUserData = CryptoJS.AES.encrypt(
+      JSON.stringify(newUserData),
+      secretKey
+    ).toString();
     localStorage.setItem("userData", encryptedUserData);
     localStorage.setItem("token", newToken);
   };
@@ -69,8 +77,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       gender: null,
     });
     setToken(null);
-    localStorage.removeItem("userData");
-    localStorage.removeItem("token");
+    localStorage.clear();
   };
 
   return (
@@ -81,4 +88,3 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 };
 
 export default AuthProvider;
-
